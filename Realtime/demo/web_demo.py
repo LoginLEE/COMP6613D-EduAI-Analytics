@@ -26,9 +26,11 @@ from lib.utils.common import Human, BodyPart, CocoPart, CocoColors, CocoPairsRen
 from lib.utils.paf_to_pose import paf_to_pose_cpp
 
 
-PATH = '/home/edmundlylee/Documents/GitHub/COMP6613D-EduAI-Analytics/video/Video-Trial-3.mp4'
-
 parser = argparse.ArgumentParser()
+parser.add_argument('--input', help='experiment configure file name',
+                    , type=str)
+parser.add_argument('--output', help='experiment configure file name',
+                    , type=str)
 parser.add_argument('--cfg', help='experiment configure file name',
                     default='./experiments/vgg19_368x368_sgd.yaml', type=str)
 parser.add_argument('--weight', type=str,
@@ -51,9 +53,9 @@ model.eval()
 
 if __name__ == "__main__":
     
-    video_capture = cv2.VideoCapture(PATH)
+    video_capture = cv2.VideoCapture(args.input)
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-    outvideo = cv2.VideoWriter('output3.avi', fourcc, 60.0, (1280,  720))
+    outvideo = cv2.VideoWriter(args.output, fourcc, 60.0, (1280,  720))
 
     while True:
         # Capture frame-by-frame
