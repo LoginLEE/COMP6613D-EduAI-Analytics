@@ -69,25 +69,13 @@ import ffmpeg
 # open specified video
 parser = argparse.ArgumentParser(
         description="Process a video annotating poses detected.")
-parser.add_argument('file', type=str, help='Video file location to process.')
+parser.add_argument('--input', type=str, help='Video file location to process.')
+parser.add_argument('--output', type=str, help='Video file location to process.')
 parser.add_argument('--no_hands', action='store_true', help='No hand pose')
 parser.add_argument('--no_body', action='store_true', help='No body pose')
 args = parser.parse_args()
-video_file = args.file
+video_file = args.input
 cap = cv2.VideoCapture(video_file)
-
-# get video file info
-ffprobe_result = ffprobe(args.file)
-info = json.loads(ffprobe_result.json)
-videoinfo = [i for i in info["streams"] if i["codec_type"] == "video"][0]
-input_fps = videoinfo["avg_frame_rate"]
-# input_fps = float(input_fps[0])/float(input_fps[1])
-input_pix_fmt = videoinfo["pix_fmt"]
-input_vcodec = videoinfo["codec_name"]
-
-# define a writer object to write to a movidified file
-postfix = info["format"]["format_name"].split(",")[0]
-output_file = ".".join(video_file.split(".")[:-1])+".processed." + postfix
 
 
 class Writer():
@@ -120,7 +108,7 @@ class Writer():
 t = time.time()
 
 fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-outvideo = cv2.VideoWriter('output.avi', fourcc, 60.0, (1280,  720))
+outvideo = cv2.VideoWriter(args.output, fourcc, 60.0, (1280,  720))
 
 while(cap.isOpened()):
     

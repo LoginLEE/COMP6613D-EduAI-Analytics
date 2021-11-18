@@ -1,0 +1,5 @@
+CUDA_VISIBLE_DEVICES=1 python demo_video.py --input /home/edmundlylee/Documents/GitHub/COMP6613D-EduAI-Analytics/video/Video-Trial-1.mp4 --output ./output1.mp4
+
+CUDA_VISIBLE_DEVICES=1 python demo_video.py --input /home/edmundlylee/Documents/GitHub/COMP6613D-EduAI-Analytics/video/Video-Trial-2.mp4 --output ./output2.mp4
+
+CUDA_VISIBLE_DEVICES=1 python demo_video.py --input /home/edmundlylee/Documents/GitHub/COMP6613D-EduAI-Analytics/video/Video-Trial-3.mp4 --output ./output3.mp4
