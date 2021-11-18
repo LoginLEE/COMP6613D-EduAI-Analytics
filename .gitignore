@@ -1,8 +1,6 @@
-hiddenlayer/
+
+*.avi
+*.mp4
+*.mov
 *.pth
 *.caffemodel
-.idea/
-.ipynb_checkpoints/
-__pycache__
-*.prototxt
-videos/
